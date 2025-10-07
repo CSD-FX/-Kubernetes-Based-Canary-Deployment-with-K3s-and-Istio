@@ -91,11 +91,7 @@ cd "$ISTIO_DIR"
 # Make istioctl available system-wide
 sudo cp bin/istioctl /usr/local/bin/
   ```
-  ```bash
-#VERIFY
-sudo cp bin/istioctl /usr/local/bin/
-  ```
-
+ 
 ### Install Istio with Demo Profile
   ```bash
 istioctl install --set profile=demo -y
@@ -115,6 +111,7 @@ kubectl get pods -n istio-system
 ---
 # Step 4: Build/Tag/Push to Dockerhub.
   ```bash
+cd ..
 cd app-v1 && docker build -t canary-app:v1.0 . && cd ..
 cd app-v2 && docker build -t canary-app:v1.1 . && cd ..
   ```

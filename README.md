@@ -3,6 +3,12 @@
 # Project Overview
 This project demonstrates a complete Kubernetes canary deployment using K3s and Istio. It features traffic splitting (80/20), safe rollouts, instant rollback capabilities, and production-ready configuration. Perfect for learning modern deployment strategies in a lightweight Kubernetes environment.
 
+### Version 1.0
+![Version 1.0](images/V1.0.png)
+
+### Version 1.1
+![Version 1.1](images/V1.1.png)
+
 # Canary Deployment Implementation
 
 ## 📋 Project Architecture
@@ -204,16 +210,21 @@ echo "Access your application at: http://$EC2_IP:$NODE_PORT"
  ```bash
 ./test-traffic-split.sh
 ```
+### Canary Deployment
+![Canary Deployment](images/Canary.png)
+
 --
  ### Upgrade completely to latest version.
  ```bash
 ./latest-version-update_only.sh
 ```
---
-### Rollback to previous version.
+### Latest Version
+![Latest Version](images/Latest%20version.png)
 ```bash
 ./previous-version-rollback.sh
 ```
+### Stable Version
+![Stable Version](images/Stable%20version.png)
 --
 ### BACK TO CANARY-DEPLOYMENT.
 ```bash

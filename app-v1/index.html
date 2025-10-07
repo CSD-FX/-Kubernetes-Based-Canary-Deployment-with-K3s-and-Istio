@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stable v1.0 - Elevate Labs</title>
+    <style>
+        body { 
+            background-color: #4A90E2; 
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .company-header {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .badge {
+            background: #2C5AA0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="company-header">
+        Elevate Labs - DevOps Platform
+    </div>
+    
+    <div class="container">
+        <h1>Welcome to Stable Version 1.0</h1>
+        <div class="badge">PRODUCTION READY</div>
+        <p><strong>Status:</strong> Rock Solid & Stable</p>
+        <p><strong>Deployment:</strong> Stable Release</p>
+        <p><strong>Pod:</strong> <span id="pod-name">Loading...</span></p>
+        <p><strong>Timestamp:</strong> <span id="timestamp">Loading...</span></p>
+    </div>
+    <script>
+        document.getElementById('pod-name').textContent = window.location.hostname;
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

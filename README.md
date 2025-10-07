@@ -126,6 +126,22 @@ kubectl get svc -n istio-system
 # Check Istio pods
 kubectl get pods -n istio-system
   ```
+---
+# Step 4: Build/Tag/Push to Dockerhub.
+  ```bash
+cd app-v1 && docker build -t canary-app:v1.0 . && cd ..
+cd app-v2 && docker build -t canary-app:v1.1 . && cd ..
+  ```
+  ```bash
+docker tag canary-app:v1.0 yourusername/canary-app:v1.0
+docker tag canary-app:v1.1 yourusername/canary-app:v1.1
+  ```
+  ```bash
+docker push yourusername/canary-app:v1.0
+docker push yourusername/canary-app:v1.1
+  ```
+
+---
 
 # Step 5: Deploy to Kubernetes.
 

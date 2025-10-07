@@ -1,30 +1,22 @@
-#!/bin/bash
-
-sudo apt update && sudo apt upgrade -y
-sleep 15
-
-# Install Docker
-echo "Installing Docker..."
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-sleep 10
 
-# Install K3s (Kubernetes)
-echo "Installing K3s Kubernetes..."
+# Install K3s
 curl -sfL https://get.k3s.io | sh -
-sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-sudo chown $USER:$USER ~/.kube/config
-export KUBECONFIG=~/.kube/config
-sleep 10
 
-# Install Istio
-echo "Installing Istio service mesh..."
+sudo k3s kubectl get nodes
+
+# Set up kubeconfig for your user
+mkdir -p $HOME/.kube
+sudo cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+sudo chown $USER:$USER $HOME/.kube/config
+export KUBECONFIG=$HOME/.kube/config
+
+# Download Istio
 curl -L https://istio.io/downloadIstio | sh -
 cd istio-*
 sudo cp bin/istioctl /usr/local/bin/
-cd ~
-istioctl install --set profile=demo -y
-kubectl label namespace default istio-injection=enabled
-sleep 10
 
-echo "✅ K3s + Istio installation completed!"
+istioctl install --set profile=demo -y
+
+kubectl label namespace default istio-injection=enabled

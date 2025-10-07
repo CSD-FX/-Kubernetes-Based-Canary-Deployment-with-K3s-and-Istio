@@ -182,6 +182,34 @@ echo "Access your application at: http://$EC2_IP:$NODE_PORT"
 ./80-20_deployment.sh
 ```
 ---
+
+# If you want to change anything on the HTML page and deploy again:
+
+### Build
+  ```bash
+cd ..
+cd app-v1 && docker build -t canary-app:v1.0 . && cd ..
+cd app-v2 && docker build -t canary-app:v1.1 . && cd ..
+  ```
+### Tag
+  ```bash
+docker tag canary-app:v1.0 <DOCKERHUB-USERNAME>/canary-app:v1.0
+docker tag canary-app:v1.1 <DOCKERHUB-USERNAME>/canary-app:v1.1
+  ```
+### Push
+  ```bash
+docker push <DOCKERHUB-USERNAME>/canary-app:v1.0
+docker push <DOCKERHUB-USERNAME>/canary-app:v1.1
+  ```
+### Redeploy to k3s.
+  ```bash
+kubectl rollout restart deployment/canary-app-v1
+kubectl rollout restart deployment/canary-app-v2
+  ```
+
+# SUCCESSFULLY DEPLOYED 😊
+
+
 ## 🙏 Acknowledgments
 
 Thank you to everyone using this repository to practice DevOps skills! Your journey in mastering Kubernetes deployments matters. Keep learning, keep deploying! 🚀

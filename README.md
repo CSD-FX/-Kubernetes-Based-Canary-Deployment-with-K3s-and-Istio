@@ -68,13 +68,15 @@ docker ps
   ```bash
 mkdir -p ~/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-
+  ```
+  ```bash
 # Change ownership
 sudo chown $USER:$USER ~/.kube/config
 
 # Set KUBECONFIG environment variable
 echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
 source ~/.bashrc
+  ```
 
 # Verify kubectl works
 kubectl get nodes
@@ -92,16 +94,22 @@ kubectl cluster-info
   ```
 ### ISTIO Install.
   ```bash
-# ISTIO Install - Add sudo for permanent access:
 curl -L https://istio.io/downloadIstio | sh -
-cd istio-*
-
-# Make istioctl permanently available
-sudo cp bin/istioctl /usr/local/bin/
-export PATH=$PWD/bin:$PATH
-
-istioctl version --remote=false
   ```
+  ```bash
+# Auto-detect and enter istio directory
+ISTIO_DIR=$(find . -maxdepth 1 -name "istio-*" -type d | head -1)
+cd "$ISTIO_DIR"
+  ```
+  ```bash
+# Make istioctl available system-wide
+sudo cp bin/istioctl /usr/local/bin/
+  ```
+  ```bash
+#VERIFY
+sudo cp bin/istioctl /usr/local/bin/
+  ```
+
 ### Install Istio with Demo Profile
   ```bash
 istioctl install --set profile=demo -y

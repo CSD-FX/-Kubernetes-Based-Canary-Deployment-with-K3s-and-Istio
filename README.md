@@ -25,6 +25,9 @@ This project demonstrates a complete Kubernetes canary deployment using K3s and 
 ---
 # Step 3: Install Required Tools.
   ```bash
+  chmod 755 *.sh
+  ```
+  ```bash
   ./requirements.sh
   ```
   ```bash

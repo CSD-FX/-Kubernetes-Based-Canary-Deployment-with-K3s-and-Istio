@@ -116,12 +116,15 @@ cd app-v1 && docker build -t canary-app:v1.0 . && cd ..
 cd app-v2 && docker build -t canary-app:v1.1 . && cd ..
   ```
   ```bash
-docker tag canary-app:v1.0 yourusername/canary-app:v1.0
-docker tag canary-app:v1.1 yourusername/canary-app:v1.1
+docker tag canary-app:v1.0 <DOCKERHUB-USERNAME>/canary-app:v1.0
+docker tag canary-app:v1.1 <DOCKERHUB-USERNAME>/canary-app:v1.1
   ```
+
+## LOGIN TO YOUR DOCKERHUB
+
   ```bash
-docker push yourusername/canary-app:v1.0
-docker push yourusername/canary-app:v1.1
+docker push <DOCKERHUB-USERNAME>/canary-app:v1.0
+docker push <DOCKERHUB-USERNAME>/canary-app:v1.1
   ```
 
 ---

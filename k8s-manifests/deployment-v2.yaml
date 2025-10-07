@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: image: <YOUR DOCKERHUB USERNAME>/canary-app:v1.1  # Replace with your actual username
+        image: <YOUR DOCKERHUB USERNAME>/canary-app:v1.1  # Replace with your actual username
         imagePullPolicy: Always  # Changed to Always to pull from Docker Hub
         ports:
         - containerPort: 80

@@ -18,8 +18,8 @@ This project demonstrates a complete Kubernetes canary deployment using K3s and 
 ---
 # Step 2: Clone the repo
   ```bash
-  git clone https://github.com/CSD-FX/-Kubernetes-Based-Canary-Deployment-with-K3s-and-Istio.git
-  cd -Kubernetes-Based-Canary-Deployment-with-K3s-and-Istio
+  git clone https://github.com/CSD-FX/Kubernetes-Based-Canary-Deployment-with-K3s-and-Istio.git
+  cd Kubernetes-Based-Canary-Deployment-with-K3s-and-Istio
   ```
 
 ---

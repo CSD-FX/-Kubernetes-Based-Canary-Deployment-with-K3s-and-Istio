@@ -3,11 +3,49 @@
 # Project Overview
 This project demonstrates a complete Kubernetes canary deployment using K3s and Istio. It features traffic splitting (80/20), safe rollouts, instant rollback capabilities, and production-ready configuration. Perfect for learning modern deployment strategies in a lightweight Kubernetes environment.
 
-### Prerequisites
+# Canary Deployment Implementation
+
+## 📋 Project Architecture
+- **K3s**: Lightweight Kubernetes cluster for container orchestration
+- **Istio Service Mesh**: Advanced traffic management and routing
+- **Dual Application Versions**: Simultaneous deployment strategy
+- **Intelligent Traffic Splitting**: Controlled user exposure
+
+## 🎯 Core Implementation
+- **Stable Version (v1.0)**: Production-ready code with blue-themed UI
+- **Canary Version (v1.1)**: New features with green-themed UI for visual differentiation
+- **Traffic Distribution**: 80% to stable, 20% to canary for risk mitigation
+- **Zero-Downtime Updates**: Seamless version switching without service interruption
+
+## 🔧 Key Features
+- **Automated Traffic Routing**: Istio-managed request distribution
+- **Instant Rollback Capability**: One-command emergency recovery
+- **Real-time Monitoring**: Live traffic flow visualization
+- **Progressive Promotion**: Gradual traffic increase based on performance
+- **Risk Containment**: Limited blast radius for failed deployments
+
+## 💡 Real-World Benefits
+- **Reduced Deployment Risk**: Only 20% users exposed to potential issues
+- **Production Testing**: Real user traffic on new features before full rollout
+- **Performance Validation**: Monitor actual user experience metrics
+- **Business Continuity**: Maintain service availability during updates
+- **Data-Driven Decisions**: Deployment choices based on real metrics, not assumptions
+
+## 🚀 Operational Workflow
+- Deploy both application versions in parallel
+- Route majority traffic to stable version
+- Monitor canary performance under real load
+- Progressive traffic increase or instant rollback
+- Full promotion upon successful validation
+
+
+## Prerequisites
 - AWS EC2 Account
 - Docker Hub account (for container images)
 
-## Step-by-Step Guide
+---
+
+# Step-by-Step Guide
 
 # Step 1: Launch EC2 Instance.
    - Name: `k3s-istio-canary`

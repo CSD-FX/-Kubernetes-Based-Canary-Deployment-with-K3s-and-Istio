@@ -78,20 +78,6 @@ echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
 source ~/.bashrc
   ```
 
-# Verify kubectl works
-kubectl get nodes
-  ```
-### Verify K3S installation
-  ```bash
-# Check all system pods
-kubectl get pods --all-namespaces
-
-# Check node details
-kubectl describe node $(kubectl get nodes -o name | cut -d/ -f2)
-
-# Check cluster info
-kubectl cluster-info
-  ```
 ### ISTIO Install.
   ```bash
 curl -L https://istio.io/downloadIstio | sh -

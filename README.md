@@ -46,7 +46,7 @@ cd ..
 # Step 5: Deploy to Kubernetes.
 
  ### Before applying, change these values in k8s-manifests/
-   - In both v1.yaml and v2.yaml > Update your own DOCKERHUB Username in the files.
+   - ⚠️ In both v1.yaml and v2.yaml > Update your own DOCKERHUB Username in the files. ‼️ 
      
   ```bash
 kubectl apply -f k8s-manifests/deployment-v1.yaml

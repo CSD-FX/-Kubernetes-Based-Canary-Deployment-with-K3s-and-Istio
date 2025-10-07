@@ -38,6 +38,9 @@ This project demonstrates a complete Kubernetes canary deployment using K3s and 
 ---
 
 # Step 4: Build Docker-Images and push it to DockerHub.
+
+ ### Login to DockerHub.
+ ### Then build
   ```bash
 cd app-v1
 docker build -t YOUR_DOCKERHUB_USERNAME/canary-app:v1.0 .

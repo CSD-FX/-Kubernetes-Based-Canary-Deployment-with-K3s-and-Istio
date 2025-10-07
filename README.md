@@ -16,18 +16,22 @@ This project demonstrates a complete Kubernetes canary deployment using K3s and 
    - Storage: 20GB SSD
    -  Security Group** (Allow these ports: 22, 80, 30000-32767)
 ---
+# Step 2: Clone the repo
+  ```bash
+  git clone https://github.com/CSD-FX/-Kubernetes-Based-Canary-Deployment-with-K3s-and-Istio.git
+  cd -Kubernetes-Based-Canary-Deployment-with-K3s-and-Istio
+  ```
 
-# Step 2: Install Required Tools.
+---
+# Step 3: Install Required Tools.
   ```bash
   ./requirements.sh
   ```
----
-
-# Step 3: Clone the repo
   ```bash
-  git clone
-  cd
+  sudo usermod -aG docker $USER
+  newgrp docker
   ```
+
 ---
 
 # Step 4: Build Docker-Images and push it to DockerHub.

@@ -27,31 +27,96 @@ This project demonstrates a complete Kubernetes canary deployment using K3s and 
   ```bash
   chmod 755 *.sh
   ```
+### Docker Install.
   ```bash
-  ./requirements.sh
+  # Add Docker's official GPG key
+sudo apt update
+sudo apt install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+
+# Install Docker
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   ```
+### Configure Docker 
   ```bash
-  sudo usermod -aG docker $USER
-  newgrp docker
+# Add your user to docker group
+sudo usermod -aG docker $USER
+newgrp docker
+docker ps
   ```
 
----
-
-# Step 4: Build Docker-Images and push it to DockerHub.
-
- ### Login to DockerHub.
- ### Then build
+###  Install K3S
   ```bash
-cd app-v1
-docker build -t YOUR_DOCKERHUB_USERNAME/canary-app:v1.0 .
-docker push YOUR_DOCKERHUB_USERNAME/canary-app:v1.0
-cd ..
-cd app-v2
-docker build -t YOUR_DOCKERHUB_USERNAME/canary-app:v1.1 .
-docker push YOUR_DOCKERHUB_USERNAME/canary-app:v1.1
-cd ..
+ curl -sfL https://get.k3s.io | sh -
   ```
----
+## ⛔️ wait for 1-2minutes before proceeding 
+
+  ```bash
+ sudo systemctl status k3s
+# Should show: active (running)
+  ```
+### Configure Kubectl access
+  ```bash
+mkdir -p ~/.kube
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+# Change ownership
+sudo chown $USER:$USER ~/.kube/config
+
+# Set KUBECONFIG environment variable
+echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
+source ~/.bashrc
+
+# Verify kubectl works
+kubectl get nodes
+  ```
+### Verify K3S installation
+  ```bash
+# Check all system pods
+kubectl get pods --all-namespaces
+
+# Check node details
+kubectl describe node $(kubectl get nodes -o name | cut -d/ -f2)
+
+# Check cluster info
+kubectl cluster-info
+  ```
+### ISTIO Install.
+  ```bash
+curl -L https://istio.io/downloadIstio | sh -
+cd istio-*
+
+export PATH=$PWD/bin:$PATH
+echo "export PATH=\$PATH:$PWD/bin" >> ~/.bashrc
+source ~/.bashrc
+
+istioctl version --remote=false
+  ```
+### Install Istio with Demo Profile
+  ```bash
+istioctl install --set profile=demo -y
+  ```
+### Enable Istio Sidecar Injection
+  ```bash
+kubectl label namespace default istio-injection=enabled
+  ```
+### Verify Istio Installation.
+  ```bash
+# Check Istio services
+kubectl get svc -n istio-system
+
+# Check Istio pods
+kubectl get pods -n istio-system
+  ```
 
 # Step 5: Deploy to Kubernetes.
 

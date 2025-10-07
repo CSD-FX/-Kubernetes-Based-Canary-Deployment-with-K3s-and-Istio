@@ -92,12 +92,13 @@ kubectl cluster-info
   ```
 ### ISTIO Install.
   ```bash
+# ISTIO Install - Add sudo for permanent access:
 curl -L https://istio.io/downloadIstio | sh -
 cd istio-*
 
+# Make istioctl permanently available
+sudo cp bin/istioctl /usr/local/bin/
 export PATH=$PWD/bin:$PATH
-echo "export PATH=\$PATH:$PWD/bin" >> ~/.bashrc
-source ~/.bashrc
 
 istioctl version --remote=false
   ```

@@ -1,19 +1,12 @@
 #!/bin/bash
 
-echo "Starting K3s + Istio installation..."
-sleep 2
-
-# Update system
-echo "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
-sleep 10
+sleep 15
 
 # Install Docker
 echo "Installing Docker..."
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-sudo usermod -aG docker $USER
-newgrp docker
 sleep 10
 
 # Install K3s (Kubernetes)
